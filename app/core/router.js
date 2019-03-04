@@ -16,23 +16,13 @@ server
     .use(restify.fullResponse())
     .use(restify.bodyParser())
 
-// Article Start
-server.post("/articles", controllers.article.createArticle)
-server.put("/articles/:id", controllers.article.updateArticle)
-server.del("/articles/:id", controllers.article.deleteArticle)
-server.get({path: "/articles/:id", version: "1.0.0"}, controllers.article.viewArticle)
-server.get({path: "/articles/:id", version: "2.0.0"}, controllers.article.viewArticle_v2)
+// Tire Start
+server.get("/tires", controllers.tire.listTires)
+server.post("/tires", controllers.tire.createTire)
+server.put("/tires/:id", controllers.tire.updateTire)
+server.del("/tires/:id", controllers.tire.deleteTire)
+server.get("/tires/:id", controllers.tire.viewTire)
 
-// This is comment operations referenced in article
-server.put("/articles/:id/comments", controllers.article.createArticleComment)
-// Article End
-
-// Comment Start
-// You can also operate on commands in Comment resource. Some of the URI below, refers to above URIs for article
-server.put("/comments/:id", controllers.comment.updateComment)
-server.del("/comments/:id", controllers.comment.deleteComment)
-server.get("/comments/:id", controllers.comment.viewComment)
-// Comment End
 
 var port = process.env.PORT || 3000;
 server.listen(port, function (err) {
