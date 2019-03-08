@@ -15,6 +15,11 @@ var server = restify.createServer();
 server
     .use(restify.plugins.fullResponse())
     .use(restify.plugins.bodyParser())
+    .use((req, res, next) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        return next();
+    });
 
 // Tire Start
 server.get("/tires", controllers.tire.listTires)
