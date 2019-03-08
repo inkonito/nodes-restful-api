@@ -1,5 +1,6 @@
 var restify = require('restify')
-    , fs = require('fs')
+    , fs = require('fs'),
+    corsMiddleware = require('restify-cors-middleware')
 
 
 var controllers = {}
@@ -10,16 +11,20 @@ fs.readdirSync(controllers_path).forEach(function (file) {
     }
 })
 
+const cors = corsMiddleware({
+    preflightMaxAge: 5, //Optional
+    origins: ['*'],
+    allowHeaders: ['Authorization'],
+    exposeHeaders: ['Authorization']
+  })
+
 var server = restify.createServer();
 
 server
     .use(restify.plugins.fullResponse())
     .use(restify.plugins.bodyParser())
-    .use((req, res, next) => {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "X-Requested-With, Authorization");
-        return next();
-    });
+    .pre(cors.preflight)
+    .use(cors.actual)
 
 // Tire Start
 server.get("/tires", controllers.tire.listTires)
