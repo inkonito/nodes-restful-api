@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
     ObjectId = mongoose.Types.ObjectId
 
 exports.listTires = function(req, res, next){
+    console.log("it works");
     Tire.find({}, function(err, tires){
         if (err) {
             res.status(500);
