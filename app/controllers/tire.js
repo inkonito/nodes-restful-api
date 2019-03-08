@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 
 exports.listTires = function(req, res, next){
     console.log("it works");
-    Tire.find(function(err, tires){
+    Tire.find({}, function(err, tires){
         console.log("tire returns");
         if (err) {
             console.log("err: ", err);

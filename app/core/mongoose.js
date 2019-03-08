@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
     , models_path = process.cwd() + '/app/models'
 
 console.log("connecting to mongo");
-
+/*
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
@@ -27,7 +27,26 @@ db.on('error', function (err) {
 connection.once('open', function() {
     console.log('MongoDB connection is established');
 });
+*/
 
+function connect() {
+    const options = {
+      useMongoClient: true,
+    };
+    mongoose.Promise = global.Promise;
+    mongoose.connect("mongodb://127.0.0.1:27017/angular", options);
+    return mongoose.connection;
+  }
+  connect()
+  .on('error', (error) => {
+    console.log(`Unable to establish connection to mongodb`, error);
+    process.exit(10);
+  })
+  .on('disconnected', connect)
+
+  .once('open', () => {
+    console.log(`Connection to mongodb established`);
+  })
 
 
 fs.readdirSync(models_path).forEach(function (file) {
