@@ -13,7 +13,7 @@ const options = {
     reconnectInterval: 1000,
     bufferMaxEntries: 0,
   };
-  const connection = mongoose.createConnection("mongodb://127.0.0.1:27017/marketplace-test", options);
+  const connection = mongoose.createConnection("mongodb://127.0.0.1:27017/angular", options);
 
 db.on('error', function (err) {
     console.log('MongoDB connection error:', err);
