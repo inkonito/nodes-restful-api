@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema   = mongoose.Schema;
 
 var TireSchema = new Schema({
-    id: number,
+    id: Number,
     cai: String,
     brand: String,
     name: String,

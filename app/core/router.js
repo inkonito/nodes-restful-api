@@ -13,8 +13,8 @@ fs.readdirSync(controllers_path).forEach(function (file) {
 var server = restify.createServer();
 
 server
-    .use(restify.fullResponse())
-    .use(restify.bodyParser())
+    .use(restify.plugins.fullResponse)
+    .use(restify.plugins.bodyParser)
 
 // Tire Start
 server.get("/tires", controllers.tire.listTires)

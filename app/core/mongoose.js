@@ -2,6 +2,8 @@ var mongoose = require('mongoose')
     , fs = require('fs')
     , models_path = process.cwd() + '/app/models'
 
+process.env.MONGO_URL = "mongodb://localhost:27017/angular"
+
 mongoose.connect(process.env.MONGO_URL, {server:{auto_reconnect:true}});
 var db = mongoose.connection;
 
