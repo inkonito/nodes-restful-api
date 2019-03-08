@@ -17,10 +17,7 @@ exports.listTires = function(req, res, next){
         }
         else{
             console.log("no error ", tires);
-            res.json({
-                type: true,
-                data: tires
-            })
+            res.json(tires)
         }
     })
 
@@ -36,10 +33,7 @@ exports.createTire = function(req, res, next) {
                 data: "Error occured: " + err
             })
         } else {
-            res.json({
-                type: true,
-                data: tire
-            })
+            res.json(tire)
         }
     })
 }
@@ -54,10 +48,7 @@ exports.viewTire = function(req, res, next) {
             })
         } else {
             if (tire) {
-                res.json({
-                    type: true,
-                    data: tire
-                })
+                res.json(tire)
             } else {
                 res.json({
                     type: false,
@@ -79,10 +70,7 @@ exports.updateTire = function(req, res, next) {
             })
         } else {
             if (tire) {
-                res.json({
-                    type: true,
-                    data: tire
-                })
+                res.json(tire)
             } else {
                 res.json({
                     type: false,
@@ -102,10 +90,7 @@ exports.deleteTire = function(req, res, next) {
                 data: "Error occured: " + err
             })
         } else {
-            res.json({
-                type: true,
-                data: "Tire: " + req.params.id + " deleted successfully"
-            })
+            res.json("Tire: " + req.params.id + " deleted successfully")
         }
     })
 }
